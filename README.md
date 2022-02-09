@@ -27,4 +27,4 @@ optional arguments:
 - Forcing use of Python 3.
 - Fixed issues I encountered with 'script["output"]'. Implemented try/except to avoid fatal errors.
 - Added 'PTR' column in 'Hosts' sheet, hostnames are stored as an array.
-- Using XLSX instead of XLS, as XLS gave validation errors upon opening.
+- Using XLSX instead of XLS, as XLS gave validation errors upon opening in Microsoft Office.
