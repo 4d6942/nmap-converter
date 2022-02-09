@@ -211,7 +211,7 @@ def main(reports, workbook):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument("-o", "--output", metavar="XLS", help="path to xlsx output")
+    parser.add_argument("-o", "--output", metavar="XLSX", help="path to xlsx output")
     parser.add_argument("reports", metavar="XML", nargs="+", help="path to nmap xml report")
     args = parser.parse_args()
 
