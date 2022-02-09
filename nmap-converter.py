@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 
 from libnmap.parser import NmapParser, NmapParserException
 from xlsxwriter import Workbook
@@ -62,7 +62,10 @@ class ServiceScriptModule(ServiceModule):
         super(ServiceScriptModule, self).__init__(host, service)
         self.source = "script"
         self.method = script["id"]
-        self.extra = script["output"].strip()
+        try:
+            self.extra = script["output"].strip()
+        except:
+            self.extra = ""
 
 
 def _tgetattr(object, name, default=None):
@@ -96,8 +99,9 @@ def generate_hosts(workbook, sheet, report):
     sheet.autofilter("A1:E1")
     sheet.freeze_panes(1, 0)
 
-    hosts_header = ["Host", "IP", "Status", "Services", "OS"]
+    hosts_header = ["Host", "PTR", "IP", "Status", "Services", "OS"]
     hosts_body = {"Host": lambda host: next(iter(host.hostnames), ""),
+                  "PTR": lambda host: str(host.hostnames),
                   "IP": lambda host: host.address,
                   "Status": lambda host: host.status,
                   "Services": lambda host: len(host.services),
